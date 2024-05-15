@@ -2,7 +2,8 @@ Package: linearcheck
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    c(person("Chloe", "Feehan", , "chloefeehan29@gmail.com", role = c("aut", "cre"))
+    c(person("Chloe", "Feehan", , "chloefeehan29@gmail.com", role = c("aut", "cre")), 
+    person("Eva", "Dykaar", , "evadykaar@gmail.com", role = c("aut", "cre")))
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
