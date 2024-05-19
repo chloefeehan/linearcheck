@@ -9,15 +9,14 @@
 #'
 #' @importFrom ggplot2 ggplot
 #' @importFrom lmtest bptest
-#' @importFrom kableExtra kable
 #'
 #' @export
 
 ## figure out how to import packages
 library(ggplot2)
 library(lmtest)
-library(kableExtra)
 
+# Making residual plot
 residplot <- function(data, x, y) {
 
     plot <-
@@ -31,43 +30,31 @@ residplot <- function(data, x, y) {
     print(plot)
 }
 
-
+# Printing out Breusch-Pagan Test and commentary if wanted
 bptable <- function(data, x, y, commentary = NULL) {
   bp_values <- bptest(y ~ x, data = data)
-  bp_table <- data.frame(
-    BP = bp_values$statistic,
-    df = bp_values$parameter,
-    p_value = bp_values$p.value
-  )
-  table <- kable(bp_table, "html", caption = "Breusch-Pagan Test") |>
-    kable_styling(full_width = FALSE)
-  print(table)
-
-  if (is.null(commentary)) {
-
-    commentary <- equalvar_commentary(data, x, y)
+  print(bp_values)
+  if (is.null(commentary) | commentary == TRUE) {
+    commentary <- equalvar_commentary(bp_values)
     cat("\nCommentary: ", commentary, "\n")
   }
 }
 
-
-equalvar_commentary <- function(data, x, y) {
-  bptable(data, x, y)
+# Commentary helper function
+equalvar_commentary <- function(bp_values) {
     if (bp_values$p.value > 0.05) {
-      commentary <- paste("There is significant evidence to conclude there is homoscedasticity
-                        in the model because the p-value:",bp_values$p.value,"is greater
-                        than 0.05. This passes the equal variance assumption.")
+      commentary <- paste("There is significant evidence to conclude there is homoscedasticity",
+                          "in the model because the p-value:",round(bp_values$p.value, 4),
+                          " is greater than 0.05. This passes the equal variance assumption.")
     } else {
-      commentary <- paste("There is significant evidence to conclude there is heteroscedasticity
-                        in the model because the p-value:",bp_values$p.value,"is less
-                        than or equal to 0.05. This violates the equal variance assumption.")
+      commentary <- paste("There is significant evidence to conclude there is heteroscedasticity",
+      "in the model because the p-value:", round(bp_values$p.value, 4),
+      " is less than or equal to 0.05. This violates the equal variance assumption.")
     }
   return(commentary)
 }
 
-#### doesn't print the commentary
-
 
 # bptable(data, x, y, commentary = TRUE)
-# equalvar_commentary(data, x, y)
 # data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
+
