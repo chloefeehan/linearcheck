@@ -9,7 +9,6 @@
 #'
 #' @importFrom ggplot2 ggplot
 #' @importFrom lmtest bptest
-#' @importFrom kableExtra kable
 #'
 #' @export
 
@@ -55,7 +54,6 @@ equalvar_commentary <- function(bp_values) {
     }
   return(commentary)
 }
-
 
 
 #bptable(data, x, y, commentary = TRUE)
