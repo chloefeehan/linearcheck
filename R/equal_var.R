@@ -16,6 +16,7 @@
 library(ggplot2)
 library(lmtest)
 
+# Making residual plot
 residplot <- function(data, x, y) {
 
     plot <-
@@ -29,28 +30,29 @@ residplot <- function(data, x, y) {
     print(plot)
 }
 
-
+# Printing out Breusch-Pagan Test and commentary if wanted
 bptable <- function(data, x, y, commentary = NULL) {
   bp_values <- bptest(y ~ x, data = data)
   print(bp_values)
 
   if (commentary == TRUE) {
-
     commentary <- equalvar_commentary(bp_values)
     cat("\nCommentary: ", commentary, "\n")
   }
 }
 
 
+# Commentary helper function
 equalvar_commentary <- function(bp_values) {
     if (bp_values$p.value > 0.05) {
-      commentary <- paste0("There is significant evidence to conclude there is homoscedasticity",
-                          "in the model because the p-value: ", round(bp_values$p.value, 4),
+      commentary <- paste("There is significant evidence to conclude there is homoscedasticity",
+                          "in the model because the p-value:",round(bp_values$p.value, 4),
                           " is greater than 0.05. This passes the equal variance assumption.")
     } else {
       commentary <- paste("There is significant evidence to conclude there is heteroscedasticity",
-                          "in the model because the p-value: ", round(bp_values$p.value, 4),
-                          " is less than or equal to 0.05. This violates the equal variance assumption.")
+      "in the model because the p-value:", round(bp_values$p.value, 4),
+      " is less than or equal to 0.05. This violates the equal variance assumption.")
+
     }
   return(commentary)
 }
@@ -58,3 +60,4 @@ equalvar_commentary <- function(bp_values) {
 
 #bptable(data, x, y, commentary = TRUE)
 #data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
+
