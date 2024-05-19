@@ -34,11 +34,13 @@ residplot <- function(data, x, y) {
 bptable <- function(data, x, y, commentary = NULL) {
   bp_values <- bptest(y ~ x, data = data)
   print(bp_values)
-  if (is.null(commentary) | commentary == TRUE) {
+
+  if (commentary == TRUE) {
     commentary <- equalvar_commentary(bp_values)
     cat("\nCommentary: ", commentary, "\n")
   }
 }
+
 
 # Commentary helper function
 equalvar_commentary <- function(bp_values) {
@@ -50,11 +52,12 @@ equalvar_commentary <- function(bp_values) {
       commentary <- paste("There is significant evidence to conclude there is heteroscedasticity",
       "in the model because the p-value:", round(bp_values$p.value, 4),
       " is less than or equal to 0.05. This violates the equal variance assumption.")
+
     }
   return(commentary)
 }
 
 
-# bptable(data, x, y, commentary = TRUE)
-# data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
+#bptable(data, x, y, commentary = TRUE)
+#data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
 
