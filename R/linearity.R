@@ -25,7 +25,6 @@ linearplot <- function(data, x, y, title, commentary = NULL) {
 }
 
 
-
 linearity_commentary <- function(bp_values) {
   if (bp_values$p.value > 0.05) {
     commentary <- paste0("There is significant evidence to conclude there is homoscedasticity",
@@ -38,6 +37,7 @@ linearity_commentary <- function(bp_values) {
   }
   return(commentary)
 }
+
 
 
 #data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
