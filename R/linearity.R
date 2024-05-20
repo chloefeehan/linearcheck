@@ -27,7 +27,7 @@ linearplot <- function(data, x, y, title) {
 #' Collects summary statistics for model and prints interpretations
 #'
 #' @param model the linear model
-#' @param commentary a string of interpretation for adjusted r-squared and p-value
+#' @param commentary a string of interpretations
 #'
 #' @return a summary table and interpretation
 #'
