@@ -30,14 +30,19 @@ stats_table <- function(model, commentary = NULL) {
 
   if (commentary == TRUE) {
     commentary <- linearity_commentary(model)
-    cat("\nCommentary: ", commentary, "\n")
+    cat(commentary, "\n")
   }
 }
 
 linearity_commentary <- function(model) {
   model_summary <- summary(model)
   adj_rsquared <- model_summary$adj.r.squared
-  p_value <- model_summary$fstatistic["Pr(>F)"] ### GET P_VALUE
+  f_stat <- model_summary$fstatistic[1]
+  df1 <- model_summary$fstatistic[2]
+  df2 <- model_summary$fstatistic[3]
+
+  # Calculate the p-value for the F-statistic
+  p_value <- pf(f_stat, df1, df2, lower.tail = FALSE)
   if (adj_rsquared >= 0.8) {
     r <- paste0("The adjusted r-squared value is ", round(adj_rsquared, 4),
                          ". Since ", round(adj_rsquared, 4),
@@ -75,17 +80,17 @@ linearity_commentary <- function(model) {
                          " relationship between the predictor and response variables.")
   }
   if (p_value > 0.05) {
-    p <- paste("There is significant evidence to conclude there is homoscedasticity",
-                        "in the model because the p-value:",round(p_value, 4),
-                        " is greater than 0.05. This passes the equal variance assumption.")
+    p <- paste("There is not enough evidence to conclude that at least one of the",
+               "predictors in the model has a significant effect on the response",
+               "because the p-value:",round(p_value, 4), ".")
   } else {
-    p <- paste("There is significant evidence to conclude there is heteroscedasticity",
-                        "in the model because the p-value:", round(p_value, 4),
-                        " is less than or equal to 0.05. This violates the equal variance assumption.")
+    p <- paste("There is significant evidence to conclude that at least one of the",
+               "predictors in the model has a significant effect on the response",
+               "because the p-value:", round(p_value, 4), ".")
 
   }
-
-  return(r, p)
+  commentary <- cat(r, p, sep = "\n")
+  return(commentary)
 }
 
 
@@ -95,7 +100,9 @@ data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
 model <- lm(y~x, data = data)
 linearity_commentary(model)
 
-linearplot(data, x, y, "title")
+stats_table(model, commentary = TRUE)
+
+#linearplot(data, x, y, "title")
 
 #source: https://www.statology.org/adjusted-r-squared-in-r/
 
