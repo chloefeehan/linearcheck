@@ -1,5 +1,5 @@
 #' Makes a scatter plot to determine if the data follows a linear pattern
-#'
+#' Interprets adjusted r-squared and p-value
 #'
 #' @param data the dataset name
 #' @param x the x values
@@ -15,6 +15,7 @@
 library(ggplot2)
 library(tidyverse)
 
+# Creates a linear plot with line of best fit
 linearplot <- function(data, x, y, title) {
   plot <- ggplot(data, mapping = aes(x = {{x}}, y = {{y}})) +
     geom_point(color = "blue") +
@@ -24,6 +25,7 @@ linearplot <- function(data, x, y, title) {
   print(plot)
 }
 
+# Collects summary statistics for model and prints interpretations
 stats_table <- function(model, commentary = NULL) {
   model_summary <- summary(model)
   print(model_summary)
@@ -34,15 +36,18 @@ stats_table <- function(model, commentary = NULL) {
   }
 }
 
+# Writes adjusted r-squared and p-value interpretations
 linearity_commentary <- function(model) {
+  # Get summary statistics
   model_summary <- summary(model)
+  # Get adjusted r-squared value
   adj_rsquared <- model_summary$adj.r.squared
   f_stat <- model_summary$fstatistic[1]
   df1 <- model_summary$fstatistic[2]
   df2 <- model_summary$fstatistic[3]
-
   # Calculate the p-value for the F-statistic
   p_value <- pf(f_stat, df1, df2, lower.tail = FALSE)
+  # Conditions for adjusted r-squared value and interpretations
   if (adj_rsquared >= 0.8) {
     r <- paste0("The adjusted r-squared value is ", round(adj_rsquared, 4),
                          ". Since ", round(adj_rsquared, 4),
@@ -79,6 +84,7 @@ linearity_commentary <- function(model) {
                          " r-squared equals zero, this demonstrates no",
                          " relationship between the predictor and response variables.")
   }
+  # Conditions for p-value interpretations
   if (p_value > 0.05) {
     p <- paste("There is not enough evidence to conclude that at least one of the",
                "predictors in the model has a significant effect on the response",
@@ -89,18 +95,16 @@ linearity_commentary <- function(model) {
                "because the p-value:", round(p_value, 4), ".")
 
   }
+  # Pastes both interpretations
   commentary <- cat(r, p, sep = "\n")
   return(commentary)
 }
 
-
-
-
-data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
-model <- lm(y~x, data = data)
-linearity_commentary(model)
-
-stats_table(model, commentary = TRUE)
+# data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
+# model <- lm(y~x, data = data)
+# linearity_commentary(model)
+#
+# stats_table(model, commentary = TRUE)
 
 #linearplot(data, x, y, "title")
 
