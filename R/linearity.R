@@ -38,7 +38,7 @@ stats_table <- function(model, commentary = NULL) {
 
 # Writes adjusted r-squared and p-value interpretations
 linearity_commentary <- function(model) {
-  # Get summary statistics
+  #Get summary statistics
   model_summary <- summary(model)
   # Get adjusted r-squared value
   adj_rsquared <- model_summary$adj.r.squared
@@ -47,54 +47,54 @@ linearity_commentary <- function(model) {
   df2 <- model_summary$fstatistic[3]
   # Calculate the p-value for the F-statistic
   p_value <- pf(f_stat, df1, df2, lower.tail = FALSE)
-  # Conditions for adjusted r-squared value and interpretations
-  if (adj_rsquared >= 0.8) {
-    r <- paste0("The adjusted r-squared value is ", round(adj_rsquared, 4),
-                         ". Since ", round(adj_rsquared, 4),
-                         " is greater than or equal to 0.8, this demonstrates a strong positive",
-                         " relationship between the predictor and response variables.")
-    } else if (adj_rsquared >= 0.5 & adj_rsquared < 0.8) {
-      r <- paste0("The adjusted r-squared value is ", round(adj_rsquared, 4),
-                           ". Since ", round(adj_rsquared, 4),
-                           " is between 0.5 and 0.8, this demonstrates a moderate positive",
-                           " relationship between the predictor and response variables.")
-  } else if (adj_rsquared > 0 & adj_rsquared < 0.5) {
-    r <- paste0("The adjusted r-squared value is ", round(adj_rsquared, 4),
-                         ". Since ", round(adj_rsquared, 4),
-                           " is between 0 and 0.5, this demonstrates a weak positive",
-                           " relationship between the predictor and response variables.")
-  } else if (adj_rsquared > -0.5 & adj_rsquared < 0) {
-    r <- paste0("The adjusted r-squared value is ", round(adj_rsquared, 4),
-                         ". Since ", round(adj_rsquared, 4),
-                         " is between 0 and -0.5, this demonstrates a weak negative",
-                         " relationship between the predictor and response variables.")
-  } else if (adj_rsquared <= -0.5 & adj_rsquared > -0.8) {
-    r <- paste0("The adjusted r-squared value is ", round(adj_rsquared, 4),
-                         ". Since ", round(adj_rsquared, 4),
-                         " is between -0.5 and -0.8, this demonstrates a weak negative",
-                         " relationship between the predictor and response variables.")
-  } else if (adj_rsquared <= -0.8) {
-    r <- paste0("The adjusted r-squared value is ", round(adj_rsquared, 4),
-                         ". Since ", round(adj_rsquared, 4),
-                         " is less than or equal to -0.8, this demonstrates a strong negative",
-                         " relationship between the predictor and response variables.")
-  } else if (adj_rsquared == 0) {
-    r <- paste0("The adjusted r-squared value is ", round(adj_rsquared, 4),
-                         ". Since the adjusted",
-                         " r-squared equals zero, this demonstrates no",
-                         " relationship between the predictor and response variables.")
-  }
-  # Conditions for p-value interpretations
-  if (p_value > 0.05) {
-    p <- paste("There is not enough evidence to conclude that at least one of the",
-               "predictors in the model has a significant effect on the response",
-               "because the p-value:",round(p_value, 4), ".")
-  } else {
-    p <- paste("There is significant evidence to conclude that at least one of the",
-               "predictors in the model has a significant effect on the response",
-               "because the p-value:", round(p_value, 4), ".")
 
+  #Conditions for adjusted r-squared value and interpretations
+  if (adj_rsquared >= 0.8) {
+    direction <- "positive"
+    value <-  "is greater than or equal to 0.8"
+    strength <- "a strong"
+  } else if (adj_rsquared >= 0.5 & adj_rsquared < 0.8) {
+    direction <- "positive"
+    value <-  "is between 0.5 and 0.8"
+    strength <- "a moderate"
+  } else if (adj_rsquared > 0 & adj_rsquared < 0.5) {
+    direction <- "positive"
+    value <-  "is between 0 and 0.5"
+    strength <- "a weak"
+  } else if (adj_rsquared > -0.5 & adj_rsquared < 0) {
+    direction <- "negative"
+    value <-  "is between -0.5 and 0"
+    strength <- "a weak"
+  } else if (adj_rsquared <= -0.5 & adj_rsquared > -0.8) {
+    direction <- "negative"
+    value <-  "is between -0.8 and -0.5"
+    strength <- "a moderate"
+  } else if (adj_rsquared <= -0.8) {
+    direction <- "negative"
+    value <-   "is less than or equal to -0.8"
+    strength <- "a strong"
+  } else if (adj_rsquared == 0) {
+    direction <- ""
+    value <-   "equals zero"
+    strength <- "no"
   }
+  #Pastes together the adjusted r-squared interpretations
+  r <- paste0("The adjusted r-squared value is ", round(adj_rsquared, 4),
+              ". Since ", round(adj_rsquared, 4),
+              " ", value, " this demonstrates ", strength, " ", direction,
+              " relationship between the predictor and response variables.")
+
+  #Conditions for p-value interpretations
+  if (p_value > 0.05) {
+    p <- paste0("There is not enough evidence to conclude that at least one of the ",
+                "predictors in the model has a significant effect on the response ",
+                "because the p-value: ",round(p_value, 4),".")
+  } else {
+    p <- paste0("There is significant evidence to conclude that at least one of the ",
+                "predictors in the model has a significant effect on the response ",
+                "because the p-value: ", round(p_value, 4),".")
+  }
+
   # Pastes both interpretations
   commentary <- cat(r, p, sep = "\n")
   return(commentary)
@@ -104,7 +104,7 @@ linearity_commentary <- function(model) {
 # model <- lm(y~x, data = data)
 # linearity_commentary(model)
 #
-# stats_table(model, commentary = TRUE)
+#stats_table(model, commentary = TRUE)
 
 #linearplot(data, x, y, "title")
 
