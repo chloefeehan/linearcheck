@@ -1,5 +1,4 @@
 #' Makes a scatter plot to determine if the data follows a linear pattern
-#' Interprets adjusted r-squared and p-value
 #'
 #' @param data the dataset name
 #' @param x the x values
@@ -25,7 +24,17 @@ linearplot <- function(data, x, y, title) {
   print(plot)
 }
 
-# Collects summary statistics for model and prints interpretations
+#' Collects summary statistics for model and prints interpretations
+#'
+#' @param model the linear model
+#' @param commentary a string of interpretation for adjusted r-squared and p-value
+#'
+#' @return a summary table and interpretation
+#'
+#' @importFrom lmtest summary
+#'
+#' @export
+
 stats_table <- function(model, commentary = NULL) {
   model_summary <- summary(model)
   print(model_summary)
@@ -36,7 +45,16 @@ stats_table <- function(model, commentary = NULL) {
   }
 }
 
-# Writes adjusted r-squared and p-value interpretations
+#' Writes adjusted r-squared and p-value interpretations
+#'
+#' @param model the linear model
+#'
+#' @return interpretations
+#'
+#' @importFrom lmtest summary
+#'
+#' @export
+
 linearity_commentary <- function(model) {
   #Get summary statistics
   model_summary <- summary(model)
