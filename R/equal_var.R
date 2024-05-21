@@ -30,7 +30,20 @@ residplot <- function(data, x, y) {
     print(plot)
 }
 
-# Printing out Breusch-Pagan Test and commentary if wanted
+#' Prints out Breusch-Pagan Test and commentary if specified
+#'
+#' @param data the dataset name
+#' @param x the x values
+#' @param y the y values
+#' @param commentary a string of interpretation for Breusch-Pagan Test
+#'
+#' @return a summary table and interpretation
+#'
+#' @importFrom lmtest bptest
+#'
+#' @export
+#'
+
 bptable <- function(data, x, y, commentary = NULL) {
   bp_values <- bptest(y ~ x, data = data)
   print(bp_values)
@@ -41,6 +54,16 @@ bptable <- function(data, x, y, commentary = NULL) {
   }
 }
 
+#' Prints out Breusch-Pagan Test interpretation
+#'
+#' @param bp_values the model's Breusch-Pagan values
+#'
+#' @return an interpretation of results
+#'
+#' @importFrom lmtest bptest
+#'
+#' @export
+#'
 
 # Commentary helper function
 equalvar_commentary <- function(bp_values) {

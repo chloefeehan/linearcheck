@@ -27,7 +27,19 @@ qqgraph <- function(data, x, y) {
 }
 
 
-# Printing out Shapiro-Wilk test and commentary if wanted
+#' Printing out Shapiro-Wilk test and commentary if specified
+#'
+#' @param data the dataset name
+#' @param x the x values
+#' @param commentary a string of interpretations
+#'
+#' @return a summary table with Shapiro-Wilk test
+#'
+#' @importFrom mvnormtest shapiro.test
+#'
+#' @export
+#'
+
 # Source for shapiro.test: https://www.geeksforgeeks.org/shapiro-wilk-test-in-r-programming/
 swtable <- function(data, x, commentary = NULL) {
   x_col <- data$x
@@ -40,6 +52,16 @@ swtable <- function(data, x, commentary = NULL) {
   }
 }
 
+#' Printing out Shapiro-Wilk test commentary
+#'
+#' @param sw_values Shapiro-Wilk test values from model
+#'
+#' @return a string of interpretations
+#'
+#' @importFrom mvnormtest shapiro.test
+#'
+#' @export
+#'
 
 normality_commentary <- function(sw_values) {
   if (sw_values$p.value > 0.05) {

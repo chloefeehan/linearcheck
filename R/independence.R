@@ -27,7 +27,20 @@ acf_pacf <- function(data, x, y) {
 }
 
 
-# Printing out Durbin-Watson test and commentary if wanted
+#' Printing out Durbin-Watson test and commentary if specified
+#'
+#' @param data the dataset name
+#' @param x the x values
+#' @param y the y values
+#' @param commentary a string of interpretations
+#'
+#' @return a Durbin-Watson test and interpretation
+#'
+#' @importFrom lmtest dwtest
+#'
+#' @export
+#'
+
 dwtable <- function(data, x, y, commentary = NULL) {
   dw_value <- dwtest(y ~ x, data = data)
   print(dw_value)
@@ -38,6 +51,16 @@ dwtable <- function(data, x, y, commentary = NULL) {
   }
 }
 
+#' Printing out Durbin-Watson test and commentary if specified
+#'
+#' @param dw_value Durbin-Watson values from model
+#'
+#' @return a Durbin-Watson test interpretation
+#'
+#' @importFrom lmtest dwtest
+#'
+#' @export
+#'
 
 independence_commentary <- function(dw_value) {
   if (dw_value$p.value > 0.05) {
