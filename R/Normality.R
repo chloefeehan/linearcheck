@@ -19,7 +19,7 @@ library(tidyverse)
 qqgraph <- function(data, x, y) {
 
   plot <- ggplot(data = data, mapping = aes(x = {{x}}, y = {{y}})) +
-    geom_point(color = "darkorange") +
+    geom_point(color = "lightblue") +
     geom_abline(intercept = 0, slope = 1, color = "blue") +
     labs(x = "X", y = "Y", title = "Quantile-Quantile Plot") +
     theme_bw()
