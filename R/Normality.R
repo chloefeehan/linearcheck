@@ -12,8 +12,8 @@
 #'
 #' @export
 
-library(ggplot2)
-library(tidyverse)
+#library(ggplot2)
+#library(tidyverse)
 
 # Returning QQ Plot
 qqgraph <- function(data, x, y) {
