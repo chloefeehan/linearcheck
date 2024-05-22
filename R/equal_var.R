@@ -42,7 +42,7 @@ residplot <- function(data, x, y) {
 #' @importFrom lmtest bptest
 #'
 #' @export bptable
-#'
+
 
 bptable <- function(data, x, y, commentary = NULL) {
   bp_values <- bptest(y ~ x, data = data)
@@ -63,7 +63,6 @@ bptable <- function(data, x, y, commentary = NULL) {
 #' @importFrom lmtest bptest
 #'
 #' @export
-#'
 
 # Commentary helper function
 equalvar_commentary <- function(bp_values) {

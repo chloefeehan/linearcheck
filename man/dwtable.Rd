@@ -7,6 +7,7 @@
 dwtable(data, x, y, commentary = NULL)
 }
 \arguments{
+
 \item{data}{a data frame containing the variables}
 
 \item{x}{the independent variable name}
@@ -14,6 +15,7 @@ dwtable(data, x, y, commentary = NULL)
 \item{y}{the dependent variable name}
 
 \item{commentary}{a logical value indicating to print interpretations}
+
 }
 \value{
 a Durbin-Watson test and interpretation

@@ -15,6 +15,7 @@
 
 # library(ggplot2)
 # library(tidyverse)
+# library(lmtest)
 
 # Returning ACF and PACF
 acf_pacf <- function(data, x, y) {
@@ -40,7 +41,7 @@ acf_pacf <- function(data, x, y) {
 #' @importFrom lmtest dwtest
 #'
 #' @export dwtable
-#'
+
 
 dwtable <- function(data, x, y, commentary = NULL) {
   dw_value <- dwtest(y ~ x, data = data)
@@ -61,7 +62,6 @@ dwtable <- function(data, x, y, commentary = NULL) {
 #' @importFrom lmtest dwtest
 #'
 #' @export
-#'
 
 independence_commentary <- function(dw_value) {
   if (dw_value$p.value > 0.05) {
@@ -77,7 +77,7 @@ independence_commentary <- function(dw_value) {
 }
 
 
-# dwtable(data, x, y, commentary = TRUE)
-# data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
-# acf_pacf(data, x, y)
+#dwtable(data, x, y, commentary = TRUE)
+#data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
+#acf_pacf(data, x, y)
 

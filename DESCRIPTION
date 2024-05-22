@@ -2,15 +2,9 @@ Package: linearcheck
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    c(person(given = "Chloe", 
-             family = "Feehan", 
-             role = c("aut"),
-             email = "chloefeehan29@gmail.com"), 
-    person(given = "Eva", 
-           family = "Dykaar", 
-           role = c("aut", "cre"),
-           email = "evadykaar@gmail.com"))
-Description: What the package does (one paragraph).
+    c(person("Chloe", "Feehan", , "chloefeehan29@gmail.com", role = c("aut", "cre")), 
+    person("Eva", "Dykaar", , "evadykaar@gmail.com", role = c("aut")))
+Description: This package test the assumptions of linearity, normality, equal error varience, and independence. 
 License: MIT
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -23,3 +17,4 @@ Imports:
     lmtest,
     ggplot2,
     stats
+
