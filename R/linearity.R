@@ -11,8 +11,10 @@
 #'
 #' @export
 
-#library(ggplot2)
-#library(tidyverse)
+
+# library(ggplot2)
+# library(tidyverse)
+
 
 # Creates a linear plot with line of best fit
 linearplot <- function(data, x, y, title) {

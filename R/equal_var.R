@@ -8,13 +8,13 @@
 #' @return a residual plot
 #'
 #' @importFrom ggplot2 ggplot
-#' @importFrom lmtest bptest
+#' @importFrom lmtest bptest lm
 #'
 #' @export
 
-## figure out how to import packages
-library(ggplot2)
-library(lmtest)
+# ## figure out how to import packages
+# library(ggplot2)
+# library(lmtest)
 
 # Making residual plot
 residplot <- function(data, x, y) {
