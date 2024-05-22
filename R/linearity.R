@@ -20,7 +20,8 @@ linearplot <- function(data, x, y, title) {
     geom_point(color = "blue") +
     geom_smooth(method = "lm", fill = "lightblue", color = "aquamarine4") +
     theme_bw() +
-    labs(title = title)
+    labs(title = title) +
+    theme_bw()
   print(plot)
 }
 
