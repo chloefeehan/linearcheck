@@ -1,25 +1,19 @@
+library(grid)
+library(gridExtra)
 
 assumption <- function(data, x, y, title) {
   model <- lm(y ~ x, data = data)
   #Independence assumption
-  acf_pacf(data, x, y)
-
-  dwtable(data, x, y, commentary = TRUE)
+  dwtable <- dwtable(data, x, y, commentary = TRUE)
 
   #Linearity assumption
-  linearplot(data, x, y, title)
-
-  stats_table(model, commentary = TRUE)
+  stats_table <- stats_table(model, commentary = TRUE)
 
   #Normality assumption
-  qqgraph(data, x, y)
-
-  swtable(data, x, commentary = TRUE)
+  swtable <- swtable(data, x, commentary = TRUE)
 
   #Equal Variance Assumption
-  residplot(data, x, y)
-  bptable(data, x, y, commentary = TRUE)
-
+  bptable<- bptable(data, x, y, commentary = TRUE)
 
 }
 
