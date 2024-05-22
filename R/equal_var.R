@@ -43,6 +43,7 @@ residplot <- function(data, x, y) {
 #'
 #' @export bptable
 
+
 bptable <- function(data, x, y, commentary = NULL) {
   bp_values <- bptest(y ~ x, data = data)
   print(bp_values)

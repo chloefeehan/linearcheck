@@ -39,7 +39,6 @@ qqgraph <- function(data, x, y) {
 #' @return a summary table with Shapiro-Wilk test
 #'
 #' @importFrom stats shapiro.test
-#'
 #' @export swtable
 
 # Source for shapiro.test: https://www.geeksforgeeks.org/shapiro-wilk-test-in-r-programming/
