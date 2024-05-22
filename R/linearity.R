@@ -9,7 +9,7 @@
 #'
 #' @importFrom ggplot2 ggplot
 #'
-#' @export
+#' @export linearplot
 
 
 # library(ggplot2)
@@ -36,7 +36,7 @@ linearplot <- function(data, x, y, title) {
 #'
 #' @importFrom lmtest summary
 #'
-#' @export
+#' @export stats_table
 
 stats_table <- function(model, commentary = NULL) {
   model_summary <- summary(model)
