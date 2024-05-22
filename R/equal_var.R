@@ -10,7 +10,7 @@
 #' @importFrom ggplot2 ggplot
 #' @importFrom lmtest bptest lm
 #'
-#' @export
+#' @export residplot
 
 # ## figure out how to import packages
 # library(ggplot2)
@@ -41,7 +41,7 @@ residplot <- function(data, x, y) {
 #'
 #' @importFrom lmtest bptest
 #'
-#' @export
+#' @export bptable
 #'
 
 bptable <- function(data, x, y, commentary = NULL) {

@@ -9,8 +9,9 @@
 #' @return a scatterplot with a regression line
 #'
 #' @importFrom ggplot2 ggplot
+#' @importFrom lmtest dwtest
 #'
-#' @export
+#' @export acf_pacf
 
 # library(ggplot2)
 # library(tidyverse)
@@ -29,16 +30,16 @@ acf_pacf <- function(data, x, y) {
 
 #' Printing out Durbin-Watson test and commentary if specified
 #'
-#' @param data the dataset name
-#' @param x the x values
-#' @param y the y values
-#' @param commentary a string of interpretations
+#' @param data a data frame containing the variables
+#' @param x the independent variable name
+#' @param y the dependent variable name
+#' @param commentary a logical value indicating to print interpretations
 #'
 #' @return a Durbin-Watson test and interpretation
 #'
 #' @importFrom lmtest dwtest
 #'
-#' @export
+#' @export dwtable
 #'
 
 dwtable <- function(data, x, y, commentary = NULL) {

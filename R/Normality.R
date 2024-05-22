@@ -11,7 +11,7 @@
 #' @importFrom ggplot2 ggplot
 #' @importFrom tidyverse ggplot
 #'
-#' @export
+#' @export qqgraph
 
 
 # library(ggplot2)
@@ -38,9 +38,9 @@ qqgraph <- function(data, x, y) {
 #'
 #' @return a summary table with Shapiro-Wilk test
 #'
-#' @importFrom mvnormtest shapiro.test
+#' @importFrom stats shapiro.test
 #'
-#' @export
+#' @export swtable
 #'
 
 # Source for shapiro.test: https://www.geeksforgeeks.org/shapiro-wilk-test-in-r-programming/
@@ -61,7 +61,7 @@ swtable <- function(data, x, commentary = NULL) {
 #'
 #' @return a string of interpretations
 #'
-#' @importFrom mvnormtest shapiro.test
+#' @importFrom stats shapiro.test
 #'
 #' @export
 #'
