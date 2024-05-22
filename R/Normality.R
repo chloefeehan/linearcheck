@@ -9,11 +9,12 @@
 #' @return a scatterplot with a regression line
 #'
 #' @importFrom ggplot2 ggplot
+#' @importFrom tidyverse ggplot
 #'
 #' @export
 
-library(ggplot2)
-library(tidyverse)
+# library(ggplot2)
+# library(tidyverse)
 
 # Returning QQ Plot
 qqgraph <- function(data, x, y) {
@@ -79,5 +80,5 @@ normality_commentary <- function(sw_values) {
 
 #swtable(data, x, commentary = TRUE)
 #data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
-qqgraph(data, x, y)
+#qqgraph(data, x, y)
 
