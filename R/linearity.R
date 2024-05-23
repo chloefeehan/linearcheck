@@ -125,9 +125,9 @@ linearity_commentary <- function(model) {
 # model <- lm(y~x, data = data)
 # linearity_commentary(model)
 #
-#stats_table(model, commentary = TRUE)
-
-#linearplot(data, x, y, "title")
+# stats_table(model, commentary = TRUE)
+#
+# linearplot(data, x, y, "title")
 
 #source: https://www.statology.org/adjusted-r-squared-in-r/
 

@@ -1,4 +1,29 @@
 # Source: ChatGPT
+
+library(testthat)
+library(ggplot2)
+library(lmtest)
+library(vdiffr)
+
+# Defining acf_pacf function outside of test_that
+acf_pacf <- function(data, x, y) {
+  par(mfrow=c(2,2))
+  acf(data[[x]], main = "X ACF Plot")
+  pacf(data[[x]], main = "X PACF Plot")
+  acf(data[[y]], main = "Y ACF Plot")
+  pacf(data[[y]], main = "Y PACF Plot")
+}
+
+# Test for acf_pacf
+test_that("acf_pacf works", {
+  data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
+
+  vdiffr::expect_doppelganger("ACF and PACF plots",
+                              function() acf_pacf(data, "x", "y")
+  )
+})
+
+# Test for dwtable and commentary
 test_that("dwtable works", {
   data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
 
