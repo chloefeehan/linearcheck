@@ -1,22 +1,15 @@
-#' Makes a QQ Plot and does the Shapiro-Wilk's Test to Determine Normality
-#'
+#' Makes a QQ Plot to Determine Normality
 #'
 #' @param data the dataset name
 #' @param x the x values
 #' @param y the y values
-#' @param title the title
 #'
-#' @return a scatterplot with a regression line
+#' @return a QQ plot
 #'
 #' @importFrom ggplot2 ggplot
 #' @importFrom tidyverse ggplot
 #'
 #' @export qqgraph
-
-
-# library(ggplot2)
-# library(tidyverse)
-
 
 # Returning QQ Plot
 qqgraph <- function(data, x, y) {
@@ -75,8 +68,4 @@ normality_commentary <- function(sw_values) {
   }
   return(commentary)
 }
-
-#swtable(data, x, commentary = TRUE)
-#data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
-#qqgraph(data, x, y)
 

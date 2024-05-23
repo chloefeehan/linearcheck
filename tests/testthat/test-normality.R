@@ -1,11 +1,13 @@
-# Source: ChatGPT
+# Source: ChatGPT for how to format the tests for graphs,
+# using the expect_doppelganer function, and how to check
+# if the test and the commentary are the same
 
 library(testthat)
 library(ggplot2)
 library(lmtest)
 library(vdiffr)
 
-# Defining qqplot function outside of test_that
+# Defining qqgraph function outside of test_that
 qqgraph <- function(data, x, y) {
   plot <- ggplot(data = data, mapping = aes(x = {{x}}, y = {{y}})) +
     geom_point(color = "lightblue") +
@@ -15,7 +17,7 @@ qqgraph <- function(data, x, y) {
   return(plot)
 }
 
-# Test for acf_pacf
+# Test for QQ plot
 test_that("qqplot works", {
   data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
 
