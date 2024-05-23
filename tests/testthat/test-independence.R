@@ -1,4 +1,6 @@
-# Source: ChatGPT
+# Source: ChatGPT for how to format the tests for graphs,
+# using the expect_doppelganer function, and how to check
+# if the test and the commentary are the same
 
 library(testthat)
 library(ggplot2)

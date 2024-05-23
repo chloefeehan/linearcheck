@@ -1,21 +1,16 @@
-#' Makes a QQ Plot and does the Shapiro-Wilk's Test to Determine Normality
+#' Makes an ACF and PACF graph for both the X and Y variables
 #'
 #'
 #' @param data the dataset name
 #' @param x the x values
 #' @param y the y values
-#' @param title the title
 #'
-#' @return a scatterplot with a regression line
+#' @return An ACF and PACF graph for both the X and Y variables
 #'
 #' @importFrom ggplot2 ggplot
 #' @importFrom lmtest dwtest
 #'
 #' @export acf_pacf
-
-# library(ggplot2)
-# library(tidyverse)
-# library(lmtest)
 
 # Returning ACF and PACF
 acf_pacf <- function(data, x, y) {
@@ -42,7 +37,6 @@ acf_pacf <- function(data, x, y) {
 #'
 #' @export dwtable
 
-
 dwtable <- function(data, x, y, commentary = NULL) {
   dw_value <- dwtest(y ~ x, data = data)
   print(dw_value)
@@ -53,7 +47,7 @@ dwtable <- function(data, x, y, commentary = NULL) {
   }
 }
 
-#' Printing out Durbin-Watson test and commentary if specified
+#' Helper function for commentary
 #'
 #' @param dw_value Durbin-Watson values from model
 #'
@@ -76,8 +70,4 @@ independence_commentary <- function(dw_value) {
   return(commentary)
 }
 
-
-#dwtable(data, x, y, commentary = TRUE)
-#data <- data.frame(x = c(1, 2, 3, 4, 5, 6), y = c(2, 4, 7, 10, 11, 14))
-#acf_pacf(data, x, y)
 
