@@ -2,7 +2,7 @@
 % Please edit documentation in R/independence.R
 \name{independence_commentary}
 \alias{independence_commentary}
-\title{Printing out Durbin-Watson test and commentary if specified}
+\title{Helper function for commentary}
 \usage{
 independence_commentary(dw_value)
 }
@@ -13,5 +13,5 @@ independence_commentary(dw_value)
 a Durbin-Watson test interpretation
 }
 \description{
-Printing out Durbin-Watson test and commentary if specified
+Helper function for commentary
 }
