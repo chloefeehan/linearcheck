@@ -37,6 +37,7 @@ acf_pacf <- function(data, x, y) {
 #'
 #' @export dwtable
 
+#Prints out Durbin-Watson test and commentary if specified
 dwtable <- function(data, x, y, commentary = NULL) {
   dw_value <- dwtest(y ~ x, data = data)
   print(dw_value)
