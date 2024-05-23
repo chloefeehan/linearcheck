@@ -33,6 +33,7 @@ linearplot <- function(data, x, y, title) {
 #'
 #' @export stats_table
 
+# Prints a summary statistics table and interpretation if specified
 stats_table <- function(model, commentary = NULL) {
   model_summary <- summary(model)
   print(model_summary)
@@ -53,6 +54,7 @@ stats_table <- function(model, commentary = NULL) {
 #'
 #' @export
 
+# Conditions for Interpretations for adjusted rsquared and p-value
 linearity_commentary <- function(model) {
   # Get summary statistics
   model_summary <- summary(model)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/Normality.R
 \name{qqgraph}
 \alias{qqgraph}
-\title{Makes a QQ Plot and does the Shapiro-Wilk's Test to Determine Normality}
+\title{Makes a QQ Plot to Determine Normality}
 \usage{
 qqgraph(data, x, y)
 }
@@ -12,12 +12,10 @@ qqgraph(data, x, y)
 \item{x}{the x values}
 
 \item{y}{the y values}
-
-\item{title}{the title}
 }
 \value{
-a scatterplot with a regression line
+a QQ plot
 }
 \description{
-Makes a QQ Plot and does the Shapiro-Wilk's Test to Determine Normality
+Makes a QQ Plot to Determine Normality
 }

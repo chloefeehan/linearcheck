@@ -2,7 +2,7 @@
 % Please edit documentation in R/independence.R
 \name{acf_pacf}
 \alias{acf_pacf}
-\title{Makes a QQ Plot and does the Shapiro-Wilk's Test to Determine Normality}
+\title{Makes an ACF and PACF graph for both the X and Y variables}
 \usage{
 acf_pacf(data, x, y)
 }
@@ -12,12 +12,10 @@ acf_pacf(data, x, y)
 \item{x}{the x values}
 
 \item{y}{the y values}
-
-\item{title}{the title}
 }
 \value{
-a scatterplot with a regression line
+An ACF and PACF graph for both the X and Y variables
 }
 \description{
-Makes a QQ Plot and does the Shapiro-Wilk's Test to Determine Normality
+Makes an ACF and PACF graph for both the X and Y variables
 }
