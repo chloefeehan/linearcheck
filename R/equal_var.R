@@ -63,7 +63,7 @@ bptable <- function(data, x, y, commentary = NULL) {
 
 # Commentary helper function
 equalvar_commentary <- function(bp_values) {
-    if ({{bp_values}}$p.value > 0.05) {
+    if (bp_values$p.value > 0.05) {
       commentary <- paste("There is significant evidence to conclude there is homoscedasticity",
                           "in the model because the p-value:",round(bp_values$p.value, 4),
                           " is greater than 0.05. This passes the equal variance assumption.")

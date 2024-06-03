@@ -16,19 +16,19 @@
 acf_pacf <- function(data, x, y) {
 
   par(mfrow=c(2,2))
-  acf(data$x, main = "X ACF Plot")
-  pacf(data$x, main = "X PACF Plot")
+  acf({{x}}, main = "X ACF Plot")
+  pacf({{x}}, main = "X PACF Plot")
 
-  acf(data$y, main = "Y ACF Plot")
-  pacf(data$y, main = "Y PACF Plot")
+  acf({{y}}, main = "Y ACF Plot")
+  pacf({{y}}, main = "Y PACF Plot")
 }
 
 
 #' Printing out Durbin-Watson test and commentary if specified
 #'
 #' @param data a data frame containing the variables
-#' @param x the independent variable name
-#' @param y the dependent variable name
+#' @param x the independent variable name in quotations
+#' @param y the dependent variable name in quotations
 #' @param commentary a logical value indicating to print interpretations
 #'
 #' @return a Durbin-Watson test and interpretation
@@ -37,9 +37,12 @@ acf_pacf <- function(data, x, y) {
 #'
 #' @export dwtable
 
+# Chatgpt used for reformulate formula to troubleshoot tunneling errors
+
 #Prints out Durbin-Watson test and commentary if specified
 dwtable <- function(data, x, y, commentary = NULL) {
-  dw_value <- dwtest({{y}} ~ {{x}}, data = data)
+  formula <- reformulate(x, response = y)
+  dw_value <- dwtest(formula, data = data)
   print(dw_value)
 
   if (commentary == TRUE) {
@@ -59,7 +62,7 @@ dwtable <- function(data, x, y, commentary = NULL) {
 #' @export
 
 independence_commentary <- function(dw_value) {
-  if ({{dw_value}}$p.value > 0.05) {
+  if (dw_value$p.value > 0.05) {
     commentary <- paste("There is significant evidence to conclude there is independence",
                         "in the model because the p-value:", round(dw_value$p.value, 4),
                         "is greater than 0.05. This passes the independence assumption.")

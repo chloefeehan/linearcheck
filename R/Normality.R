@@ -19,7 +19,7 @@ qqgraph <- function(data, x, y) {
     geom_abline(intercept = 0, slope = 1, color = "blue") +
     labs(x = "X", y = "Y", title = "Quantile-Quantile Plot") +
     theme_bw()
-  return(plot)
+  print(plot)
 }
 
 
