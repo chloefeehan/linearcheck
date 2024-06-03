@@ -7,7 +7,7 @@
 #'
 #' @return a residual plot
 #'
-#' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 ggplot aes
 #' @importFrom lmtest bptest lm
 #'
 #' @export residplot
@@ -17,7 +17,7 @@
 residplot <- function(data, x, y) {
 
     plot <-
-      lm(y ~ x, data = data) |>
+      lm({{y}} ~ {{x}}, data = data) |>
       broom::augment() |>
       ggplot(mapping = aes(y = .resid, x = .fitted)) +
       geom_point(color = "darkblue") +
@@ -42,7 +42,7 @@ residplot <- function(data, x, y) {
 
 
 bptable <- function(data, x, y, commentary = NULL) {
-  bp_values <- bptest(y ~ x, data = data)
+  bp_values <- bptest({{y}} ~ {{x}}, data = data)
   print(bp_values)
 
   if (commentary == TRUE) {
@@ -63,7 +63,7 @@ bptable <- function(data, x, y, commentary = NULL) {
 
 # Commentary helper function
 equalvar_commentary <- function(bp_values) {
-    if (bp_values$p.value > 0.05) {
+    if ({{bp_values}}$p.value > 0.05) {
       commentary <- paste("There is significant evidence to conclude there is homoscedasticity",
                           "in the model because the p-value:",round(bp_values$p.value, 4),
                           " is greater than 0.05. This passes the equal variance assumption.")
