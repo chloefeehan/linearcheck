@@ -6,8 +6,8 @@
 #'
 #' @return a QQ plot
 #'
-#' @importFrom ggplot2 ggplot
-#' @importFrom tidyverse ggplot
+#' @importFrom ggplot2 ggplot aes
+#' @importFrom tidyverse ggplot aes
 #'
 #' @export qqgraph
 
@@ -57,7 +57,7 @@ swtable <- function(data, x, commentary = NULL) {
 #' @export
 
 normality_commentary <- function(sw_values) {
-  if (sw_values$p.value > 0.05) {
+  if ({{sw_values}}$p.value > 0.05) {
     commentary <- paste("There is significant evidence to conclude there is normality",
                          "in the model because the p-value:", round(sw_values$p.value, 4),
                          "is greater than 0.05. This passes the normality assumption.")
