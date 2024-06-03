@@ -7,7 +7,7 @@
 #'
 #' @return An ACF and PACF graph for both the X and Y variables
 #'
-#' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 ggplot aes
 #' @importFrom lmtest dwtest
 #'
 #' @export acf_pacf
@@ -39,7 +39,7 @@ acf_pacf <- function(data, x, y) {
 
 #Prints out Durbin-Watson test and commentary if specified
 dwtable <- function(data, x, y, commentary = NULL) {
-  dw_value <- dwtest(y ~ x, data = data)
+  dw_value <- dwtest({{y}} ~ {{x}}, data = data)
   print(dw_value)
 
   if (commentary == TRUE) {
@@ -59,7 +59,7 @@ dwtable <- function(data, x, y, commentary = NULL) {
 #' @export
 
 independence_commentary <- function(dw_value) {
-  if (dw_value$p.value > 0.05) {
+  if ({{dw_value}}$p.value > 0.05) {
     commentary <- paste("There is significant evidence to conclude there is independence",
                         "in the model because the p-value:", round(dw_value$p.value, 4),
                         "is greater than 0.05. This passes the independence assumption.")
