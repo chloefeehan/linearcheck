@@ -7,7 +7,7 @@
 #'
 #' @return a scatterplot with a regression line
 #'
-#' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 ggplot aes
 #'
 #' @export linearplot
 
