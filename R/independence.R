@@ -15,6 +15,12 @@
 # Returning ACF and PACF
 acf_pacf <- function(data, x, y) {
 
+  # x and y variables to vectors
+  # Source: ChatGPT to convert x and y to vectors
+  x <- as.vector(data[[deparse(substitute(x))]])
+  y <- as.vector(data[[deparse(substitute(y))]])
+
+  # printing acf and pacf plots
   par(mfrow=c(2,2))
   acf({{x}}, main = "X ACF Plot")
   pacf({{x}}, main = "X PACF Plot")
@@ -37,15 +43,18 @@ acf_pacf <- function(data, x, y) {
 #'
 #' @export dwtable
 
-# Chatgpt used for reformulate formula to troubleshoot tunneling errors
-
 #Prints out Durbin-Watson test and commentary if specified
 dwtable <- function(data, x, y, commentary = NULL) {
-  formula <- reformulate(x, response = y)
-  dw_value <- dwtest(formula, data = data)
+
+  # x and y variables to vectors
+  # Source: ChatGPT to convert x and y to vectors
+  x <- as.vector(data[[deparse(substitute(x))]])
+  y <- as.vector(data[[deparse(substitute(y))]])
+
+  dw_value <- dwtest(y ~ x, data = data)
   print(dw_value)
 
-  if (commentary == TRUE) {
+  if (!is.null(commentary) && commentary == TRUE) {
     commentary <- independence_commentary(dw_value)
     cat("\nCommentary: ", commentary, "\n")
   }
