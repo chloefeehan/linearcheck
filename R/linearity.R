@@ -34,11 +34,21 @@ linearplot <- function(data, x, y, title) {
 #' @export stats_table
 
 # Prints a summary statistics table and interpretation if specified
-stats_table <- function(model, commentary = NULL) {
+stats_table <- function(data, x, y, commentary = NULL) {
+
+  # x and y variables to vectors
+  # Source: ChatGPT to convert x and y to vectors
+  x <- as.vector(data[[deparse(substitute(x))]])
+  y <- as.vector(data[[deparse(substitute(y))]])
+
+  # model
+  model <- lm(y ~ x, data = data)
+
+  # model summary
   model_summary <- summary(model)
   print(model_summary)
 
-  if (commentary == TRUE) {
+  if (!is.null(commentary) && commentary == TRUE) {
     commentary <- linearity_commentary(model)
     cat(commentary, "\n")
   }

@@ -35,7 +35,7 @@ test_that("stats_table works", {
   model <- lm(y ~ x, data = data)
 
   # Output of stats_table function
-  output <- capture.output(stats_table(model, commentary = TRUE))
+  output <- capture.output(stats_table(data, x, y, commentary = TRUE))
 
   # Expected output
   expected_stats_test <- "Call:"

@@ -36,11 +36,14 @@ qqgraph <- function(data, x, y) {
 
 # Source for shapiro.test: https://www.geeksforgeeks.org/shapiro-wilk-test-in-r-programming/
 swtable <- function(data, x, commentary = NULL) {
-  x_col <- data$x
-  sw_values <- shapiro.test(x_col)
+  #x_col <- data$x
+  # Source: ChatGPT to convert x and y to vectors
+  x <- as.vector(data[[deparse(substitute(x))]])
+
+  sw_values <- shapiro.test(x)
   print(sw_values)
 
-  if (commentary == TRUE) {
+  if (!is.null(commentary) && commentary == TRUE) {
     commentary <- normality_commentary(sw_values)
     cat("\nCommentary: ", commentary, "\n")
   }

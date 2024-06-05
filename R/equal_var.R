@@ -9,17 +9,25 @@
 #'
 #' @importFrom ggplot2 ggplot aes
 #' @importFrom lmtest bptest lm
+#' @importFrom broom augment
 #'
 #' @export residplot
-
 
 # Making residual plot
 residplot <- function(data, x, y) {
 
+  # x and y variables to vectors
+  # Source: ChatGPT to convert x and y to vectors
+  x <- as.vector(data[[deparse(substitute(x))]])
+  y <- as.vector(data[[deparse(substitute(y))]])
+
+  # linear model
+  model <- lm(y ~ x)
+  augmented_data <- broom::augment(model)
+
+    # plotting residuals
     plot <-
-      lm({{y}} ~ {{x}}, data = data) |>
-      broom::augment() |>
-      ggplot(mapping = aes(y = .resid, x = .fitted)) +
+      ggplot(augmented_data, mapping = aes(y = .resid, x = .fitted)) +
       geom_point(color = "darkblue") +
       labs(x = "Fitted", y = "Residuals",
            title = "Residuals vs. Fitted Plot") +
@@ -40,14 +48,21 @@ residplot <- function(data, x, y) {
 #'
 #' @export bptable
 
-
 bptable <- function(data, x, y, commentary = NULL) {
-  bp_values <- bptest({{y}} ~ {{x}}, data = data)
+
+  # x and y variables to vectors
+  # Source: ChatGPT to convert x and y to vectors
+  x <- as.vector(data[[deparse(substitute(x))]])
+  y <- as.vector(data[[deparse(substitute(y))]])
+
+  # getting bp values
+  bp_values <- bptest(y ~ x, data = data)
   print(bp_values)
 
-  if (commentary == TRUE) {
+  # printing commentary if wanted
+  if (!is.null(commentary) && commentary == TRUE) {
     commentary <- equalvar_commentary(bp_values)
-    cat("\nCommentary: ", commentary, "\n")
+      cat("\nCommentary: ", commentary, "\n")
   }
 }
 
